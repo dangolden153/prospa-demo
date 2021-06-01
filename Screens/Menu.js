@@ -5,8 +5,8 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import { Divider } from 'react-native-elements';
 import { Image } from 'react-native-elements/dist/image/Image';
 import { ScrollView } from 'react-native-gesture-handler';
-// import {  } from 'react-native-elements/dist/input/Input';
 import { Ionicons } from '@expo/vector-icons';
+import {BtnText} from '../components/Button'
 
 const mealData = [
     {
@@ -87,7 +87,7 @@ const Menu = ({navigation}) => {
 
                 <View style={styles.iconBtn}>
                 <Ionicons name="heart-outline" size={30} color="white" /> 
-                <Button title="kitchen" type="outline" styles={{color:"white"}} containerStyle={styles.btn} />
+                <BtnText title="kitchen" onPress={()=> navigation.navigate("food details")} />
                 
                 </View>
                 </View>    
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:"#1A1A21",
         // alignItems:"center",
+        // justifyContent:"center",
         // width:"100%",
     },
     menuStyle:{
@@ -140,7 +141,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:"space-between",
         margin: 10,
-        marginVertical:10,
     },
 
     right_flex:{

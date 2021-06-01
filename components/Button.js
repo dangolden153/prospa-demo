@@ -21,6 +21,15 @@ export  const BtnOutline = (props) => {
        )
    }
 
+   export  const BtnText = (props) => {
+    const {title, onPress} = props
+       return (
+           <Pressable style={styles.btnText} onPress={onPress}>
+                <Text style={styles.textBtn}>{title}</Text>
+           </Pressable>
+       )
+   }
+
 const styles = StyleSheet.create({
     btn:{
         backgroundColor:"#F64B29",
@@ -41,9 +50,23 @@ const styles = StyleSheet.create({
         paddingLeft:10
     },
 
+    textBtn:{
+        fontSize:16,
+        lineHeight:21, 
+        letterSpacing:0.25,
+        color:"#F64B29",
+        paddingLeft:10
+},
     btnOutline:{
         borderWidth:1,
         borderColor:"black",
+        padding:10,
+        borderRadius: 10,
+    },
+
+    btnText:{
+        borderWidth:1,
+        borderColor:"#F64B29",
         padding:10,
         borderRadius: 10,
     }

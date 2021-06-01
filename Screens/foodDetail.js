@@ -10,11 +10,15 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import {Btn} from '../components/Button'
-import {BtnOutline} from '../components/Button'
-
-
+import {BtnOutline,BtnText} from '../components/Button'
+import { Video, AVPlaybackStatus } from 'expo-av';
+import sampleVideo from '../images/video.mp4'
 
 const FoodDetail = ({ navigation }) => {
+  
+  const [status, setStatus] = React.useState({});
+  const video = React.useRef(null);
+  
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -31,22 +35,24 @@ const FoodDetail = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar style="dark" />
 
-      <View style={styles.video}>
-        {/* <Video 
-        source={{uri:`${require('../images/video.mp4')}`}}
-        ref={(ref)=>{this.player = ref}}
-        onBuffer={this.onBuffer}
-        onError={this.videoError}
-
-        style={{flex: 1}}
-         
-        /> */}
-     <Ionicons name="play" size={80} color="white" />
+      <View style={styles.videoContainer}>
+        <Video
+        ref={video}
+        style={{height:"100%", width:"100%"}}
+        source={sampleVideo}
+        useNativeControls
+        resizeMode="contain"
+        isLooping
+        
+        isMuted={false}
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
+      />
+      
       </View>
 
       {/* /////// feedback section */}
       <View style={styles.feedback}>
-        <Text style={{ color: "white", fontSize: 18 }}>Feedback</Text>
+        <Text style={{ color: "white", fontSize: 18, color:"#F7B02E" }}>Feedback</Text>
 
         <View
           style={{
@@ -55,11 +61,11 @@ const FoodDetail = ({ navigation }) => {
             width: "40%",
           }}
         >
-          <Ionicons name="star" size={20} color="white" />
-          <Ionicons name="star" size={20} color="white" />
-          <Ionicons name="star-outline" size={20} color="white" />
-          <Ionicons name="star-outline" size={20} color="white" />
-          <Ionicons name="star-outline" size={20} color="white" />
+          <Ionicons name="star" size={20} color="#F7B02E" />
+          <Ionicons name="star" size={20} color="#F7B02E" />
+          <Ionicons name="star-outline" size={20} color="#F7B02E" />
+          <Ionicons name="star-outline" size={20} color="#F7B02E" />
+          <Ionicons name="star-outline" size={20} color="#F7B02E" />
         </View>
       </View>
 
@@ -81,7 +87,6 @@ const FoodDetail = ({ navigation }) => {
       <View style={styles.btn_icon}>
         <BtnOutline />
         <Btn title= "ADD TO CUPBOARD" onPress={console.log('hey yo')} />
-        {/* <Button title="ADD TO CUPBOARD" containerStyle={styles.btn} /> */}
       </View>
     </View>
   );
@@ -95,7 +100,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#1A1A21",
     position: "relative",
   },
-  video: {
+  videoContainer: {
+    flex:1,
     height: 250,
     width: "100%",
     justifyContent: "center",
