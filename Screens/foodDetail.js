@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -6,25 +6,41 @@ import {
   StyleSheet,
   Button,
   Dimensions,
-  
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {Btn} from '../components/Button'
-import {BtnOutline,BtnText} from '../components/Button'
-import { Video, AVPlaybackStatus } from 'expo-av';
-import sampleVideo from '../images/video.mp4'
-
-const FoodDetail = ({ navigation }) => {
-  
+import { Btn } from "../components/Button";
+import { BtnOutline, BtnText } from "../components/Button";
+import { Video, AVPlaybackStatus } from "expo-av";
+import sampleVideo from "../images/video.mp4";
+import { ScrollView } from "react-native-gesture-handler";
+import { useDispatch } from "react-redux";
+import { foodType } from "../reducer/foodReducer/food_type";
+const FoodDetail = ({ navigation, route }) => {
   const [status, setStatus] = React.useState({});
+  const [data, setData] = React.useState({});
+  const [meal, setMeal] = React.useState("");
+
+  useEffect(() => {
+    const data = route.params.item;
+    // console.log(data);
+    setData(data);
+  }, [route.params.item]);
+
+  console.log(data?.data);
+
+  // const [status, setStatus] = React.useState({});
   const video = React.useRef(null);
-  
+  const dispatch = useDispatch();
+
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerStyle: { backgroundColor: "#1A1A21" },
+      headerTitleStyle: { color: "white" },
+      headerTintColor: "white",
       headerRight: () => (
         <Ionicons
           name="menu"
-          color="black"
+          color="white"
           size={30}
           style={{ paddingRight: 10 }}
         />
@@ -33,26 +49,25 @@ const FoodDetail = ({ navigation }) => {
   });
   return (
     <View style={styles.container}>
-      <StatusBar style="dark" />
+      <StatusBar style="auto" />
 
       <View style={styles.videoContainer}>
         <Video
-        ref={video}
-        style={{height:"100%", width:"100%"}}
-        source={sampleVideo}
-        useNativeControls
-        resizeMode="contain"
-        isLooping
-        
-        isMuted={false}
-        onPlaybackStatusUpdate={status => setStatus(() => status)}
-      />
-      
+          style={{ height: "100%", width: "100%" }}
+          source={sampleVideo}
+          useNativeControls
+          resizeMode="cover"
+          isLooping
+          isMuted={false}
+          onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+        />
       </View>
 
       {/* /////// feedback section */}
       <View style={styles.feedback}>
-        <Text style={{ color: "white", fontSize: 18, color:"#F7B02E" }}>Feedback</Text>
+        <Text style={{ color: "white", fontSize: 18, color: "#F7B02E" }}>
+          Feedback
+        </Text>
 
         <View
           style={{
@@ -74,19 +89,41 @@ const FoodDetail = ({ navigation }) => {
         <Text h2 style={{ marginBottom: 20, fontSize: 23 }}>
           Ingredents & Description
         </Text>
-        <Text style={{ lineHeight: 20, color: "black", fontSize: 18 }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia
-          quisquam ipsa itaque, quas possimus voluptates? Vitae facilis omnis
-          in, distinctio iusto ex dolor nostrum modi totam temporibus ut quos
-          ipsam facere natus beatae amet officia odio aliquid, est pariatur
-          asperiores? Quasi corporis molestiae doloribus explicabo vitae
-          provident autem suscipit nisi.
+
+        <Text
+          style={{
+            color: "black",
+            fontSize: 20,
+            fontWeight: "bold",
+            letterSpacing: 1,
+          }}
+        >
+          {/* {mealName} */}dfghj
         </Text>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingTop: 10,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              color: "black",
+              opacity: 0.7,
+            }}
+          >
+            {/* {description} */}sfdghjk
+          </Text>
+        </ScrollView>
       </View>
 
       <View style={styles.btn_icon}>
         <BtnOutline />
-        <Btn title= "ADD TO CUPBOARD" onPress={console.log('hey yo')} />
+        <Button
+          title="ADD TO CUPBOARD"
+          onPress={() => dispatch({ type: "CUPBOARD", payload: data })}
+        />
       </View>
     </View>
   );
@@ -101,23 +138,24 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   videoContainer: {
-    flex:1,
+    flex: 1,
     height: 250,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
     opacity: 0.6,
-    backgroundColor: "purple"
   },
   feedback: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
+    paddingVertical: 10,
   },
   description: {
     backgroundColor: "grey",
-    padding: 10,
+    paddingHorizontal: 10,
     paddingTop: 20,
+    paddingBottom: 70,
     borderTopStartRadius: 20,
     borderTopRightRadius: 20,
     flex: 1,

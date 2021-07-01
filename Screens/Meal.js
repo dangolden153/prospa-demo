@@ -57,7 +57,7 @@ const Meal = ({ navigation }) => {
   const mealContent = (item) => {
     return (
       <View style={styles.mealContainer}>
-        <TouchableOpacity activeOpacity={0.5} onPress={()=> navigation.navigate("menu")}>
+        <TouchableOpacity activeOpacity={0.8} onPress={()=> navigation.navigate("menu")}>
           <View style={styles.mealStyles}>
             <Image
               source={item.img}
@@ -93,10 +93,10 @@ const Meal = ({ navigation }) => {
       <StatusBar style="auto" />
 
       {/* <Text>The perfect natural meal you want to try...</Text> */}
-      {/* <Image
+      <Image
         source={pics}
         style={{ height: 150, width: 150, marginTop:25 }}
-      /> */}
+      />
 
       <FlatList style={{marginTop: 10}}
         data={mealData}
