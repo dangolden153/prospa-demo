@@ -5,14 +5,15 @@ import pics from "../images/uber.png";
 import Navoptions from "../component/Navoptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_API_KEY } from "@env";
-import { useDispatch } from "react-redux";
-import { setOrigin, setDestination } from "../reducer/navSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrigin, setDestination, selectOrigin } from "../reducer/navSlice";
 import NavFavourite from "../component/NavFavourite";
 // import {} from ''
 
 const HomePage = () => {
   const dispatch = useDispatch();
-
+  const origins = useSelector(selectOrigin);
+  console.log(origins);
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
@@ -24,7 +25,7 @@ const HomePage = () => {
           placeholder="Where From?"
           returnKeyType="search"
           query={{
-            key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU",
+            key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU", ///AIzaSyDHchab5M0w3HWur0vLNCGhzMZGvomzWIs
             language: "en",
           }}
           styles={{
@@ -42,8 +43,9 @@ const HomePage = () => {
                 description: data.description,
               })
             );
+            console.log(data, details);
 
-            setDestination(null);
+            // setDestination(null);
           }}
           fetchDetails={true}
           // minLength={2}

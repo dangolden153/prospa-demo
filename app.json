@@ -4,11 +4,11 @@
     "slug": "my_appp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.jpg",
+    "icon": "./assets/uber_icon.png",
     "splash": {
-      "image": "./assets/splash.jpg",
-      "resizeMode": "contain",
-      "backgroundColor": "#BEBEC0"
+      "image": "./assets/splash2.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#333259"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
