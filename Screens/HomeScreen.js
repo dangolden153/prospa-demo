@@ -8,12 +8,10 @@ import { GOOGLE_API_KEY } from "@env";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrigin, setDestination, selectOrigin } from "../reducer/navSlice";
 import NavFavourite from "../component/NavFavourite";
-// import {} from ''
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const origins = useSelector(selectOrigin);
-  console.log(origins);
+  // console.log(origins);
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
@@ -24,35 +22,33 @@ const HomePage = () => {
         <GooglePlacesAutocomplete
           placeholder="Where From?"
           returnKeyType="search"
-          query={{
-            key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU", ///AIzaSyDHchab5M0w3HWur0vLNCGhzMZGvomzWIs
-            language: "en",
-          }}
           styles={{
             container: {
               flex: 0,
             },
             textInput: {
-              fontSize: 18,
+              fontSize: 16,
             },
           }}
           onPress={(data, details = null) => {
             dispatch(
               setOrigin({
-                location: details.geometry.location,
-                description: data.description,
+                location: details?.geometry?.location,
+                description: data?.description,
               })
             );
-            console.log(data, details);
 
-            // setDestination(null);
+            setDestination(null);
           }}
-          fetchDetails={true}
-          // minLength={2}
-          // enablePoweredByContainer={false}
-
+          enablePoweredByContainer={false}
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
+          minLength={2}
+          fetchDetails={true}
+          query={{
+            key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU", ///AIzaSyDHchab5M0w3HWur0vLNCGhzMZGvomzWIs
+            language: "en",
+          }}
         />
 
         <Navoptions />

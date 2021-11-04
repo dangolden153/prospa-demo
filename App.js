@@ -9,7 +9,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import MapScreen from "./Screens/MapScreen";
 import { Platform } from "react-native";
-
 export default function App() {
   const Stack = createStackNavigator();
 
@@ -41,7 +40,7 @@ export default function App() {
   );
 }
 
-/// dependencies
-
-//// 1. redux toolkit
-//// 1. redux toolkit
+/// work on adding env file and pass it throught the app
+// check the styling of the destination input field ..../
+// work on the splash car transparency .../
+/// ............... the cars transparency

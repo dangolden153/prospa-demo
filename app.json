@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "my_appp",
-    "slug": "my_appp",
-    "version": "1.0.0",
+    "name": "Uber",
+    "slug": "Uber",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/uber_icon.png",
+    "icon": "./assets/appIcon.png",
     "splash": {
-      "image": "./assets/splash2.png",
+      "image": "./assets/splash1.png",
       "resizeMode": "cover",
-      "backgroundColor": "#333259"
+      "backgroundColor": "#F4F4F4"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.uber.uber"
     },
     "web": {
       "favicon": "./assets/favicon.png"

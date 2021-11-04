@@ -14,7 +14,7 @@ import { GOOGLE_API_KEY } from "@env";
 const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
-  const mapRef = useRef();
+  const mapRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,60 +25,68 @@ const Map = () => {
     });
   }, [origin, destination]);
 
+  const googleApiKey = "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU";
+
   useEffect(() => {
     if (!origin || !destination) return;
 
-    fetch(
-      `https://maps.googleaapis.com/map/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(setTimeTraveledinformation(data.rows[0].elements[0]));
-      });
-  }, [origin, destination, GOOGLE_API_KEY]);
+    const getTravelTime = async () => {
+      fetch(
+        `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin?.description}&destinations=${destination?.description}&key=${googleApiKey}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          dispatch(setTimeTraveledinformation(data?.rows[0]?.elements[0]));
+        });
+    };
+
+    getTravelTime();
+  }, [origin, destination, googleApiKey]);
   return (
     <MapView
       ref={mapRef}
       style={tw`flex-1 `}
+      mapType="mutedStandard"
       initialRegion={{
-        latitude: 37.78825, /////latitude: origin.location.lat 37.78825,   longitude:origin.location.lng -122.4324,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: origin.location.lat,
+        longitude: origin.location.lng,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
       }}
     >
-      {/* {origin && destination && (
+      {origin && destination && (
         <MapViewDirections
           origin={origin.description}
           destination={destination.description}
-          apiKey={GOOGLE_API_KEY}
+          apikey={googleApiKey}
           strokeWidth={3}
-          stokeColor="black"
+          strokeColor="black"
         />
-      )} */}
-      {/* {origin.location && (
-          <Marker
-            coordinate={{
-              latitude: origin.location.lat, /////latitude: 37.78825,   longitude: -122.4324,
-              longitude: origin.location.lng,
-            }}
-            title="Origin"
-            description={origin.description}
-            identifier="origin"
-          />
-        )} */}
+      )}
+      {origin?.location && (
+        <Marker
+          coordinate={{
+            latitude: origin.location.lat, /////latitude: 37.78825,   longitude: -122.4324,
+            longitude: origin.location.lng,
+          }}
+          title="Origin"
+          description={origin.description}
+          identifier="origin"
+        />
+      )}
 
-      {/* {destination.location && (
-          <Marker
-            coordinate={{
-              latitude: destination.location.lat, /////latitude: 37.78825,   longitude: -122.4324,
-              longitude: destination.location.lng,
-            }}
-            title="Destination"
-            description={destination.description}
-            identifier="destination"
-          />
-        )} */}
+      {destination?.location && (
+        <Marker
+          coordinate={{
+            latitude: destination.location.lat, /////latitude: 37.78825,   longitude: -122.4324,
+            longitude: destination.location.lng,
+          }}
+          title="Destination"
+          description={destination.description}
+          identifier="destination"
+        />
+      )}
     </MapView>
   );
 };
@@ -86,3 +94,5 @@ const Map = () => {
 export default Map;
 
 const styles = StyleSheet.create({});
+
+// `https://maps.googleapis.com/map/api/distancematrix/json?units=imperial&origins=${origin?.description}&destinations=${destination?.description}&key=${googleApiKey}`

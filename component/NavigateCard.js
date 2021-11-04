@@ -22,36 +22,37 @@ const NavigateCard = () => {
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       <Text style={tw`text-center py-5 text-xl`}>How are you, Dangolden! </Text>
-      <View style={tw`border-t border-gray-200 flex-shrink`}>
-        <GooglePlacesAutocomplete
-          placeholder="Where to?"
-          styles={toInputBoxStyles}
-          nearbyPlacesAPI="GooglePlacesSearch"
-          debounce={400}
-          fetchDetails={true}
-          onFail={(error) => console.error(error)}
-          minLength={2}
-          enablePoweredByContainer={false}
-          onPress={(data, details = null) => {
-            dispatch(
-              setDestination({
-                location: details.geometry.location,
-                description: data.description,
-              })
-            );
-            navigation.navigate("RideOptionsCard");
-          }}
-          query={{
-            key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU",
-            language: "en",
-          }}
-        />
+      <View>
+        <View style={tw`border-t border-gray-200 flex-shrink`}>
+          <GooglePlacesAutocomplete
+            placeholder="Where to?"
+            styles={toInputBoxStyles}
+            nearbyPlacesAPI="GooglePlacesSearch"
+            debounce={400}
+            fetchDetails={true}
+            onFail={(error) => console.error(error)}
+            minLength={2}
+            enablePoweredByContainer={false}
+            onPress={(data, details = null) => {
+              dispatch(
+                setDestination({
+                  location: details.geometry.location,
+                  description: data.description,
+                })
+              );
+              navigation.navigate("RideOptionsCard");
+            }}
+            query={{
+              key: "AIzaSyBdmp34MfNFzBgkUOYzHwbfG5XGCq0q8tU",
+              language: "en",
+            }}
+          />
+        </View>
+
+        <NavFavourite />
       </View>
-
-      <NavFavourite />
-
       <View
-        style={tw`flex-row bg-white justify-evenly py-4 mt-auto border-t border-gray-200`}
+        style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-200`}
       >
         <TouchableOpacity
           onPress={() => navigation.navigate("RideOptionsCard")}
@@ -88,8 +89,8 @@ const toInputBoxStyles = StyleSheet.create({
 
   textInput: {
     backgroundColor: "#DDDDDF",
-    // borderRadius: 0,
-    fontSize: 18,
+    borderRadius: 0,
+    fontSize: 16,
   },
   textInputContainer: {
     paddingHorizontal: 20,

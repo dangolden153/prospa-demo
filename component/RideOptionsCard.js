@@ -12,25 +12,27 @@ import { Icon } from "react-native-elements/dist/icons/Icon";
 import tw from "tailwind-react-native-classnames";
 import { selectTimeTraveledInformation } from "../reducer/navSlice";
 import { useSelector } from "react-redux";
+import "intl";
+import "intl/locale-data/jsonp/en";
 
 const data = [
   {
     id: "124",
     title: "UberX",
     multiplier: 1,
-    image: `${require("../images/uberT1.jpg")}`,
+    image: `https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2019-honda-civic-sedan-1558453497.jpg`,
   },
   {
     id: "244",
     title: "Uber XL",
     multiplier: 1.2,
-    image: `${require("../images/uber1.jpg")}`,
+    image: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSOBBt3L0DX0xJNdawGbKqQnnx0ItMQ_I_jaU6HgSLglrcpvgOLzMJ9giOfqtqwuXQNX8&usqp=CAU`,
   },
   {
     id: "643",
     title: "Uber LUX",
     multiplier: 1.75,
-    image: `${require("../images/uberT.jpg")}`,
+    image: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUgs66Nb_L0vst-LnCQzGgq53GU17r_MF2us10DdKa06vm5fpEygu5kk73G--YUPh9C_g&usqp=CAU`,
   },
 ];
 
@@ -68,24 +70,25 @@ const RideOptionsCard = () => {
             onPress={() => setSelected(item)}
           >
             <Image
-              style={{ height: 100, width: 100, resizeMode: "contain" }}
-              source={image}
+              style={{ height: 90, width: 90, resizeMode: "contain" }}
+              source={{ uri: image }}
             />
-            <View style={tw`-ml-6`}>
-              <Text style={tw`text-xl font-semibold text-black`}>{title}</Text>
-              <Text>
-                {/* {travelTimeInformation?.duration.text} */}
-                Time traveled...
+            <View>
+              <Text style={tw`text-sm font-semibold text-black`}>{title}</Text>
+              <Text numberOfLines={1} style={{ width: 150 }}>
+                {travelTimeInformation?.duration.text} Travel time ...
               </Text>
             </View>
-            <Text style={tw`text-xl`}>
-              {/* {new Intl.NumberFormat("en-gb", {
+            <Text style={tw`text-sm`}>
+              {new Intl.NumberFormat("en-gb", {
                 style: "currency",
                 currency: "GBP",
               }).format(
-                travelTimeInformation?.duration.value * PURGE_PRICE * multiplier
-              ) / 100} */}
-              $200
+                (travelTimeInformation?.duration.value *
+                  PURGE_PRICE *
+                  multiplier) /
+                  100
+              )}
             </Text>
           </TouchableOpacity>
         )}
