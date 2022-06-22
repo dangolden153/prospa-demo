@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Uber",
-    "slug": "Uber",
+    "name": "Prospa",
+    "slug": "Prospa",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/appIcon.png",
     "splash": {
-      "image": "./assets/splash1.png",
-      "resizeMode": "cover",
+      "image": "./assets/icon1.png",
+      "resizeMode": "contain",
       "backgroundColor": "#F4F4F4"
     },
     "updates": {
