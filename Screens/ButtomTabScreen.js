@@ -2,7 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AccountScreen from "../components/AccountScreen/AccountScreen";
 import InvoiceScreen from "../components/InvoiceScreen";
-import { AntDesign } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Foundation,
+  SimpleLineIcons,
+  FontAwesome5,
+} from "@expo/vector-icons";
 import AccountSvg from "../assets/svg/wallet.svg";
 import { Image, StyleSheet, View } from "react-native";
 import SmallText from "../components/Text/SmallText";
@@ -54,7 +59,18 @@ function MyTabs() {
           options={{
             headerStyle: { backgroundColor: "white", elevation: 0 },
             tabBarIcon: ({ focused }) => (
-              <AntDesign name="pluscircle" size={24} color="black" />
+              <View style={styles.tabBarIcon}>
+                <FontAwesome5
+                  name="file-invoice"
+                  size={24}
+                  color={focused ? color.secondary : color.gray}
+                />
+                {focused ? (
+                  <SmallText secondary>Invoice</SmallText>
+                ) : (
+                  <SmallText gray>Invoice</SmallText>
+                )}
+              </View>
             ),
           }}
           component={InvoiceScreen}
@@ -66,7 +82,18 @@ function MyTabs() {
           options={{
             headerStyle: { backgroundColor: "white", elevation: 0 },
             tabBarIcon: ({ focused }) => (
-              <AntDesign name="pluscircle" size={24} color="black" />
+              <View style={styles.tabBarIcon}>
+                <SimpleLineIcons
+                  name="paypal"
+                  size={24}
+                  color={focused ? color.secondary : color.gray}
+                />
+                {focused ? (
+                  <SmallText secondary>Pay</SmallText>
+                ) : (
+                  <SmallText gray>Pay</SmallText>
+                )}
+              </View>
             ),
           }}
           component={Pay}
@@ -78,12 +105,46 @@ function MyTabs() {
           options={{
             headerStyle: { backgroundColor: "white", elevation: 0 },
             tabBarIcon: ({ focused }) => (
-              <AntDesign name="pluscircle" size={24} color="black" />
+              <View style={styles.tabBarIcon}>
+                <Foundation
+                  name="graph-pie"
+                  size={24}
+                  color={focused ? color.secondary : color.gray}
+                />
+                {focused ? (
+                  <SmallText secondary>Summary</SmallText>
+                ) : (
+                  <SmallText gray>Summary</SmallText>
+                )}
+              </View>
             ),
           }}
           component={Summary}
         />
       </Tab.Navigator>
+
+      {/* **********More*************** */}
+      <Tab.Screen
+        name="more"
+        options={{
+          headerStyle: { backgroundColor: "white", elevation: 0 },
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.tabBarIcon}>
+              <Foundation
+                name="indent-more"
+                size={24}
+                color={focused ? color.secondary : color.gray}
+              />
+              {focused ? (
+                <SmallText secondary>More</SmallText>
+              ) : (
+                <SmallText gray>More</SmallText>
+              )}
+            </View>
+          ),
+        }}
+        component={Summary}
+      />
     </View>
   );
 }
