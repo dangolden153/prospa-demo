@@ -1,7 +1,7 @@
 import React from "react";
 import { KeyboardAvoidingView, Text } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import {  NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { Platform } from "react-native";
 import MyTabs from "./Screens/ButtomTabScreen";
 import CreateAccount from "./Screens/CreateAccount/CreateAccount";
@@ -13,14 +13,10 @@ import {
 import TransactionDetails from "./Screens/TransactionDetails/TransactionDetails";
 
 export default function App() {
-
- 
-
   const Stack = createStackNavigator();
 
-
   return (
-    <NavigationContainer >
+    <NavigationContainer>
       <SafeAreaProvider>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -33,7 +29,7 @@ export default function App() {
               gestureEnabled: true,
               gestureDirection: "horizontal",
               cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              presentation: "transparentModal"
+              presentation: "transparentModal",
             }}
           >
             <Stack.Screen

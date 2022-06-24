@@ -23,6 +23,7 @@ const PaymentRepeat = () => {
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
         value={isEnabled}
+        
       />
     </TouchableOpacity>
   );

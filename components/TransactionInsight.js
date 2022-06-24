@@ -1,18 +1,21 @@
-import { StyleSheet, View,TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import React from "react";
 import SmallText from "./Text/SmallText";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { color } from "./Colors";
 import RegularText from "./Text/RegularText";
 
-
 const TransactionInsight = () => {
   return (
-    <TouchableOpacity activeOpacity={0.5}  style={styles.container}>
+    <TouchableOpacity activeOpacity={0.5} style={styles.container}>
       {/* top section  */}
       <View style={styles.text_icon}>
-        <SmallText center>last 30 days </SmallText>
-        <AntDesign name="right" size={20} color={color.primary} />
+        <SmallText center secondary>
+          last 30 days
+        </SmallText>
+        <TouchableOpacity>
+        <AntDesign name="right" size={20} color={color.secondary} />
+        </TouchableOpacity>
       </View>
 
       {/* down section  */}

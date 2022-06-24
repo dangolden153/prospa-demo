@@ -13,7 +13,7 @@ const BigText = ({
   lightBlack,
   fontSize,
   marginHorizontal,
-  marginVertical
+  marginVertical,
 }) => {
   return (
     <View>
@@ -37,7 +37,6 @@ const BigText = ({
           textAlign: center && "center",
           marginHorizontal: marginHorizontal ? marginHorizontal : 0,
           marginVertical: marginVertical ? marginVertical : 0,
-
         }}
       >
         {children}

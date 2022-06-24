@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   seperator: {
-    backgroundColor: "gray",
+    backgroundColor: color.darkGray,
     height: 1,
     width: "85%",
     alignSelf: "flex-end",

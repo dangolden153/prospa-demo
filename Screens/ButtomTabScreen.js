@@ -45,8 +45,16 @@ function MyTabs() {
             headerRight: () => <HeaderRightNav />,
             tabBarIcon: ({ focused }) => (
               <View style={styles.tabBarIcon}>
-                <AccountSvg />
-                <SmallText secondary>Accounts</SmallText>
+                {focused ? (
+                  <AccountSvg />
+                ) : (
+                  <AntDesign name="wallet" size={20} color={color.gray} />
+                )}
+                {focused ? (
+                  <SmallText secondary>Accounts</SmallText>
+                ) : (
+                  <SmallText gray>Accounts</SmallText>
+                )}
               </View>
             ),
           }}
@@ -62,7 +70,7 @@ function MyTabs() {
               <View style={styles.tabBarIcon}>
                 <FontAwesome5
                   name="file-invoice"
-                  size={24}
+                  size={20}
                   color={focused ? color.secondary : color.gray}
                 />
                 {focused ? (
@@ -85,7 +93,7 @@ function MyTabs() {
               <View style={styles.tabBarIcon}>
                 <SimpleLineIcons
                   name="paypal"
-                  size={24}
+                  size={20}
                   color={focused ? color.secondary : color.gray}
                 />
                 {focused ? (
@@ -132,7 +140,7 @@ function MyTabs() {
             <View style={styles.tabBarIcon}>
               <Foundation
                 name="indent-more"
-                size={24}
+                size={20}
                 color={focused ? color.secondary : color.gray}
               />
               {focused ? (
