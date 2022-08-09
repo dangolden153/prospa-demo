@@ -4,9 +4,13 @@ import Card from "../../assets/svg/card.svg";
 import { LinearGradient } from "expo-linear-gradient";
 import { color } from "../Colors";
 
-const AdContent = () => {
+const AdContent = ({ handleOpen }) => {
   return (
-    <TouchableOpacity activeOpacity={.8} style={styles.cardContainer}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.cardContainer}
+      onPress={handleOpen}
+    >
       <LinearGradient
         colors={[color.secondary, color.tertiary]}
         start={[0.0, 0.5]}
@@ -24,11 +28,10 @@ export default AdContent;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginTop:15
-
+    marginTop: 15,
   },
-  gradient:{
+  gradient: {
     elevation: 10,
     borderRadius: 5,
-  }
+  },
 });

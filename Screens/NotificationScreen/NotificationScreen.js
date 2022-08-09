@@ -1,24 +1,9 @@
-import React, {useState, useRef, useEffect} from "react";
-// import { KeyboardAvoidingView } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
-// import { Platform } from "react-native";
-import MyTabs from "./Screens/ButtomTabScreen";
-import CreateAccount from "./Screens/CreateAccount/CreateAccount";
-import {
-  createStackNavigator,
-  CardStyleInterpolators, 
-  TransitionPresets,
-} from "@react-navigation/stack";
-import TransactionDetails from "./Screens/TransactionDetails/TransactionDetails";
-import NotificationScreen from "./Screens/NotificationScreen/NotificationScreen";
-import Presto from "./Screens/Presto/Presto";
+import React, { useEffect, useRef, useState } from "react";
 import {
   KeyboardAvoidingView,
   View,
   Text,
   TouchableOpacity,
-  Platform
 } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
@@ -32,15 +17,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-
-export default function App() {
-  // console.log("notification", notification);
-
-  // const Stack = createStackNavigator();
-
-
-
-
+const NotificationScreen = () => {
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -155,81 +132,6 @@ export default function App() {
     </TouchableOpacity> */}
     </View>
   );
-  
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // return (
-  //   <NavigationContainer>
-  //     <SafeAreaProvider>
-  //       <KeyboardAvoidingView 
-  //         style={{ flex: 1 }}
-  //         behavior={Platform.OS === "ios" ? "padding" : "height"}
-  //         keyboardVerticalOffset={Platform.OS === "ios" ? -64 : 0}
-  //       >
-  //         <Stack.Navigator
-  //           // initialRouteName="details"
-  //           screenOptions={{
-  //             gestureEnabled: true,
-  //             gestureDirection: "horizontal",
-  //             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-  //             presentation: "transparentModal",
-  //           }}
-  //         >
-  //           <Stack.Screen
-  //             name="bottomTab"
-  //             options={{ headerShown: false }}
-  //             component={MyTabs}
-  //           />
-
-            
-  //           <Stack.Screen
-  //             name="notification"
-  //             options={{ headerShown: false }}
-  //             component={NotificationScreen}
-  //           />
-  //            <Stack.Screen
-  //             name="presto"
-  //             options={{ headerShown: false }}
-  //             component={Presto}
-  //           />
-  //           <Stack.Screen
-  //             name="account"
-  //             options={{ headerShown: false }}
-  //             component={CreateAccount}
-  //           />
-             
-  //           <Stack.Screen
-  //             name="details"
-  //             options={{
-  //               headerShown: false,
-  //               ...TransitionPresets.ModalSlideFromBottomIOS,
-  //             }}
-  //             component={TransactionDetails}
-  //           />
-  //         </Stack.Navigator>
-  //       </KeyboardAvoidingView>
-  //     </SafeAreaProvider>
-  //   </NavigationContainer>
-  // );
-}
+export default NotificationScreen;
